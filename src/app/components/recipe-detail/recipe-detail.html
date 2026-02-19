@@ -1,0 +1,55 @@
+<div class="card recipe-details">
+    <button class="back-btn" (click)="goToPage()">Back to Recipes</button>
+    <div class="card-body">
+      <h3 class="recipe-name">{{recipe().name}}</h3>
+  
+      <div class="notes-container">
+        <div class="notes">Preparation Time: {{ recipe().prepTimeMinutes }} mins</div>
+        <div class="notes">Cooking Time: {{ recipe().cookTimeMinutes }} mins</div>
+        <div class="notes">Servings: {{ recipe().servings }}</div>
+      </div>
+  
+      <div class="content-wrapper">
+        <div class="card recipe-detail-card">
+          <div class="card-body recipe-detail-card-body">
+            <img [src]="recipe().image" alt="recipe image" class="recipe-img" />
+          </div>
+        </div>
+  
+        <div class="card" style="width: 34rem; height: 40rem">
+          <div class="card-body" style="padding: 20px">
+            <div class="ingredients">
+              <h4>Ingredients</h4>
+              <ul>
+                @for (ing of recipe().ingredients; track $index) {
+                  <li style="list-style: none">
+                    <img class="check-icon" src="images/square-check.svg" />{{ ing }}
+                  </li>
+                  <hr />
+                }
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="instructions-container">
+    <h2>Instructions:</h2>
+  
+    <ul class="instructions">
+      @for (item of recipe().instructions; track $index) {
+        <li class="instruction-step">
+          <span class="step-number">
+            {{ $index + 1 }}
+          </span>
+          <span class="step-text">
+            {{ item }}
+          </span>
+        </li>
+      }
+    </ul>
+  </div>
+  
+    </div>
+  </div>
+  

@@ -1,0 +1,22 @@
+.card-wrapper{
+    display: grid;
+    grid-template-columns: repeat(5,1fr);
+    gap: 30px;
+    padding: 20px 40px;
+}
+.recipe-card{
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 6px 18px rgb(0,0,0,0.08);
+    transition: transform 0.3s ease;
+}
+.recipe-card:hover{
+    transform: translateY(-6px);
+}
+.view-recipe{
+    background: #00800017;
+    border: #008000a3;
+    color: #198754;
+    font-size: 16px;
+    font-weight: 500;
+}
