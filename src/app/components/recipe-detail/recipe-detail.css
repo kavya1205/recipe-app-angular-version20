@@ -1,6 +1,6 @@
 
   .recipe-details {
-      background: url('/images/Banner.png');
+      background: url('/images/recipe-details-banner.png');
       background-position: top;
       background-repeat: no-repeat;
       background-size: cover;
@@ -98,3 +98,8 @@
       border-radius: 10px;
       border: 1px solid transparent;
   } 
+
+  .prep-icon, .cook-icon{
+    height: 2rem;
+object-fit: contain;
+  }
