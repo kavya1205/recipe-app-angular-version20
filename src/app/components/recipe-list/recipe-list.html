@@ -1,4 +1,12 @@
+<select (change)="handleDropdownChange($event)">
+    @for (item of recipeTags(); track $index) {
+      <option [value]="item">{{ item }}</option>
+    }
+  </select>
+
+  <input type="search" [formControl]="searchControl"/>
 <div class="card-wrapper">
+    
     @for(item of recipesList(); track $index){
         <div class="card recipe-card">
             <img [src]="item.image" class="card-img-top"/>

@@ -13,9 +13,21 @@ export class RecipeListService{
         return this.http.get(this.baseUrl);
     }
 
+    getAllTags():Observable<any>{
+        return this.http.get(this.baseUrl+"/tags");
+    }
+
     getRecipeById(id:number):Observable<any>{
         return this.http.get(`${this.baseUrl}/${id}`);
     }
 
+    getRecipeByTags(tagName:string):Observable<any>{
+        return this.http.get(`${this.baseUrl}/tag/${tagName}`)
+    }
 
-}
+    getSearchedRecipes(searchedVal:string):Observable<any>{
+        return this.http.get(`${this.baseUrl}/search?q=${searchedVal}`)
+    }
+
+
+} 
