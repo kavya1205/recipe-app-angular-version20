@@ -1,0 +1,13 @@
+<form [formGroup]="form">
+    <input formControlName="candidateName" placeholder="Enter your name"/>
+    <div formArrayName="workExperiences">
+        @for(item of workExperiences.controls; track $index){
+            <div>
+                <input [formControlName]="$index" placeholder="Enter company name"/>
+                <button type="button" (click)="removeWorkExperience($index)">Remove</button>
+            </div>
+        }
+        <button (click)="addWorkExperience()">Add Work experience</button>
+        <button (click)="saveDetails()">Save</button>
+    </div>
+</form>

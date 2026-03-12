@@ -1,1 +1,35 @@
-<p>add-recipe works!</p>
+<!-- <form [formGroup]="recipeForm" (ngSubmit)="saveRecipeData()">
+    <div class="form-group">
+      <label for="name">Recipe Name</label>
+      <input type="text" class="form-control" id="name" placeholder="Enter recipe name" formControlName="name">
+    </div>
+    <div class="form-group">
+      <label for="ingredients">Ingredientss</label>
+      <input type="text" class="form-control" id="ingredients" placeholder="ingredients" formControlName="ingredients">
+    </div>
+
+    <div class="form-group">
+        <label for="instructions">Instructions</label>
+        <input type="text" class="form-control" id="instructions" placeholder="instructions" formControlName="instructions">
+      </div>
+   
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form> -->
+
+  <form [formGroup]="form">
+
+    <input formControlName="recipeName" placeholder="Recipe Name" />
+  
+    <div formArrayName="ingredients">
+      @for (ingredient of ingredients.controls; track $index) {
+        <div>
+          <input [formControlName]="$index" placeholder="Ingredient" />
+          <button type="button" (click)="removeIngredient($index)">Remove</button>
+        </div>
+      }
+    </div>
+  
+    <button type="button" (click)="addIngredient()">+ Add Ingredient</button>
+    <button type="submit">Submit</button>
+  
+  </form>

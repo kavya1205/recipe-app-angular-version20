@@ -29,5 +29,9 @@ export class RecipeListService{
         return this.http.get(`${this.baseUrl}/search?q=${searchedVal}`)
     }
 
+    saveRecipe(data:any):Observable<any>{
+        console.log("Save recipe data called")
+        return this.http.post(`${this.baseUrl}/add`,data)
+    }
 
 } 
