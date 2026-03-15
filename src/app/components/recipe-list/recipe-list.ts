@@ -5,6 +5,9 @@ import { RecipeListService } from '../../services/recipe-list.service';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, filter, switchMap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { Store } from '@ngrx/store';
+import { selectAllRecipes } from '../../store/recipe.selectors';
+import { loadRecipes } from '../../store/recipe.action';
 
 @Component({
   selector: 'app-recipe-list',
@@ -18,6 +21,10 @@ export class RecipeList {
   recipesList = signal<any>([]);
   recipeTags = signal<any>([]);
   http: any = inject(HttpClient);
+  store= inject(Store);
+
+  recipeStoreData= this.store.select(selectAllRecipes);
+  
 
   constructor(private router: Router, private recipeListService: RecipeListService) {
     this.searchControl.valueChanges.pipe(
@@ -47,8 +54,10 @@ export class RecipeList {
   }
 
   ngOnInit() {
-    this.fetchAllRecipes();
+    this.store.dispatch(loadRecipes())
+//    this.fetchAllRecipes();
     this.fetchAllTags();
+    console.log("Recipe from store===>",this.recipeStoreData)
   }
 
   handleDropdownChange(selectedVal: any) {
@@ -72,16 +81,16 @@ export class RecipeList {
     })
   }
 
-  fetchAllRecipes() {
-    this.recipeListService.getAllRecipes().subscribe({
-      next: (res: any) => {
-        this.recipesList.set(res.recipes);
-      },
-      error: (err: any) => {
-        console.log("Error while fetching data", err);
-      }
-    })
-  }
+  // fetchAllRecipes() {
+  //   this.recipeListService.getAllRecipes().subscribe({
+  //     next: (res: any) => {
+  //       this.recipesList.set(res.recipes);
+  //     },
+  //     error: (err: any) => {
+  //       console.log("Error while fetching data", err);
+  //     }
+  //   })
+  // }
 
   fetchAllTags() {
     this.recipeListService.getAllTags().subscribe({
